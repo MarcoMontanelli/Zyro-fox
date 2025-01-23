@@ -67,13 +67,13 @@ export default function AnimatedStats() {
   }, []);
 
   return (
-    <div className="relative flex flex-col lg:flex-row items-center justify-between px-6 lg:px-16 py-4 max-w-7xl mx-auto">
+    <div className="relative flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 md:px-8 lg:px-16 py-4 max-w-7xl mx-auto">
       {/* Left Section */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: 'easeOut' }}
-        className="lg:w-1/3 order-last lg:order-none"
+        className="lg:w-1/3 order-last lg:order-none text-center lg:text-left lg:mr-12"
       >
         {/* Divider with Text */}
         <div className="flex items-center w-full mb-6 lg:mb-10">
@@ -97,57 +97,46 @@ export default function AnimatedStats() {
         </p>
       </motion.div>
 
-      {/* Right Section - Carousel */}
+      {/* Right Section - Stats */}
       <motion.div
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: 'easeOut' }}
-        className="lg:w-2/3 mt-10 lg:mt-0 relative overflow-hidden min-h-[300px] order-first lg:order-none"
+        className="w-full lg:w-2/3 mt-10 lg:mt-0 relative"
       >
         {statsData.map((slide, slideIndex) => (
-          <motion.div
+          <div
             key={slideIndex}
-            className={`absolute top-0 w-full h-full flex justify-center items-center transition-all duration-700 ease-in-out ${
-              slideIndex === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-            }`}
-            initial={{
-              x: slideIndex === currentSlide ? 50 : -50,
-              opacity: 0,
-            }}
-            animate={{
-              x: slideIndex === currentSlide ? 0 : slideIndex > currentSlide ? 50 : -50,
-              opacity: slideIndex === currentSlide ? 1 : 0,
-            }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className={`${
+              slideIndex === currentSlide ? '' : 'hidden'
+            } grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4`}
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {slide.stats.map((stat, statIndex) => {
-                const count = useCountUp(0, stat.value, 2); // Count-up animation starts at 0
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={statIndex}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: statIndex * 0.2 }}
-                    className="relative flex flex-col items-center justify-center p-6 rounded-lg bg-transparent backdrop-blur-sm shadow-md shadow-black text-center border border-white/10"
-                  >
-                    {/* Glow Effect */}
-                    <div className="absolute inset-0 rounded-lg -z-10 blur-[8px] opacity-70 drop-shadow-[0_0_30px_rgba(255,255,255,0.8)]" />
-                    {/* Icon */}
-                    <Icon className="text-white text-5xl mb-3 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]" />
-                    {/* Count */}
-                    <h3 className="text-4xl font-bold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]">
-                      {count.toLocaleString()}
-                    </h3>
-                    {/* Label */}
-                    <p className="text-lg text-gray-300 mt-2">{stat.label}</p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
+            {slide.stats.map((stat, statIndex) => {
+              const count = useCountUp(0, stat.value, 2); // Count-up animation starts at 0
+              const Icon = stat.icon;
+              return (
+                <motion.div
+                  key={statIndex}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: statIndex * 0.2 }}
+                  className="relative flex flex-col items-center justify-center p-6 rounded-lg bg-transparent backdrop-blur-sm shadow-md shadow-black text-center border border-white/10"
+                >
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 rounded-lg -z-10 blur-[8px] opacity-70 drop-shadow-[0_0_30px_rgba(255,255,255,0.8)]" />
+                  {/* Icon */}
+                  <Icon className="text-white text-5xl mb-3 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]" />
+                  {/* Count */}
+                  <h3 className="text-4xl font-bold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]">
+                    {count.toLocaleString()}
+                  </h3>
+                  {/* Label */}
+                  <p className="text-lg text-gray-300 mt-2">{stat.label}</p>
+                </motion.div>
+              );
+            })}
+          </div>
         ))}
       </motion.div>
     </div>

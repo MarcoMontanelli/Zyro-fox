@@ -30,13 +30,13 @@ export default function PhoneSection({ videoId }: PhoneSectionProps) {
   const videoUrl = `https://www.youtube.com/embed/${videoId}`;
 
   return (
-    <div className="relative flex flex-col items-center lg:items-start justify-center px-6 lg:px-16 py-2 max-w-7xl mx-auto space-y-10">
+    <div className="relative flex flex-col items-center lg:items-start justify-center px-4 sm:px-6 md:px-8 lg:px-16 py-6 max-w-7xl mx-auto space-y-10 overflow-hidden">
       {/* Text Section */}
       <motion.div
         className="text-center lg:text-left w-full"
         initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: true, amount: 0.8 }}
+        animate="onscreen"
+        variants={textVariants}
       >
         <div className="flex items-center w-full mb-6 lg:mb-10">
           <hr className="flex-grow border-gray-600" />
@@ -63,8 +63,7 @@ export default function PhoneSection({ videoId }: PhoneSectionProps) {
       <motion.div
         className="w-full flex justify-center lg:justify-end"
         initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: true, amount: 0.8 }}
+        animate="onscreen"
         variants={deviceVariants}
       >
         <div className="hidden lg:flex w-full justify-center">
@@ -79,15 +78,22 @@ export default function PhoneSection({ videoId }: PhoneSectionProps) {
           </DeviceFrameset>
         </div>
 
-        <div className="lg:hidden w-full">
-          <iframe
-            src={videoUrl}
-            className="w-full h-[300px] md:h-[400px]"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
+        <motion.div
+          className="lg:hidden w-full"
+          initial="offscreen"
+          animate="onscreen"
+          variants={deviceVariants}
+        >
+          <div className="relative overflow-hidden rounded-lg" style={{ aspectRatio: '16/9' }}>
+            <iframe
+              src={videoUrl}
+              className="w-full h-full"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </motion.div>
       </motion.div>
     </div>
   );

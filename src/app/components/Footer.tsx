@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaTwitter, FaYoutube, FaDiscord, FaTiktok } from 'react-icons/fa';
 
 export default function Footer() {
   const links = ['Home', 'About', 'Gallery', 'Resources', 'Contact'];
@@ -17,7 +17,7 @@ export default function Footer() {
       initial="hidden"
       animate="visible"
       variants={fadeInFromBottom}
-      className="relative w-full pb-12 px-6 lg:px-16 bg-transparent backdrop-blur-sm"
+      className="relative w-full pb-12 px-4 sm:px-6 lg:px-16 bg-transparent backdrop-blur-sm"
     >
       <div className="max-w-4xl mx-auto flex flex-col items-center space-y-8">
         {/* Logo and Quote */}
@@ -47,7 +47,7 @@ export default function Footer() {
 
         {/* Links with Animated Underline */}
         <motion.ul
-          className="relative flex flex-wrap justify-center space-x-6 text-white text-lg"
+          className="relative flex flex-wrap justify-center space-x-4 sm:space-x-6 text-white text-lg"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -81,11 +81,19 @@ export default function Footer() {
           variants={fadeInFromBottom}
         >
           {/* Social Media Links */}
-          <div className="flex space-x-6">
-            {[FaFacebook, FaInstagram, FaTwitter, FaYoutube].map((Icon, index) => (
+          <div className="flex flex-wrap justify-center space-x-4 sm:space-x-6">
+            {[
+              { icon: FaTiktok, link: "https://www.tiktok.com/@smont2rimonta" },
+              { icon: FaInstagram, link: "https://www.instagram.com/dragonsemporiumig/" },
+              { icon: FaTwitter, link: "https://twitter.com" },
+              { icon: FaYoutube, link: "https://www.youtube.com/@madonnaaramiaca1410" },
+              { icon: FaDiscord, link: "https://discord.gg/kV4TEmqHUg" },
+            ].map(({ icon: Icon, link }, index) => (
               <motion.a
                 key={index}
-                href="#"
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}
                 className="text-white text-2xl hover:text-gray-300"
               >

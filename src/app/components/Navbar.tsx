@@ -47,12 +47,12 @@ export default function Navbar() {
               <h1 className="text-xl font-light text-white hover:scale-105 transition-transform">
                 ZyroFox
               </h1>
-              <div className="h-8 w-8  rounded-full">
-              <img
-                src="drake.png" // Replace with the actual image path
-                alt="Logo"
-                className="h-full w-full object-cover rounded-full"
-              />
+              <div className="h-8 w-8 rounded-full">
+                <img
+                  src="drake.png" // Replace with the actual image path
+                  alt="Logo"
+                  className="h-full w-full object-cover rounded-full"
+                />
               </div>
             </motion.div>
 
@@ -91,7 +91,7 @@ export default function Navbar() {
               animate={{ y: 0 }}
               exit={{ y: '-100%' }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="absolute top-16 left-0 w-full h-screen backdrop-blur-md bg-black opacity-70 flex flex-col items-center justify-center space-y-8"
+              className="absolute top-16 left-0 w-full h-screen backdrop-blur-md bg-black opacity-90 flex flex-col items-center justify-center space-y-8 px-4"
             >
               {['Home', 'About', 'Gallery', 'Resources', 'Contact'].map((link, index) => (
                 <motion.div

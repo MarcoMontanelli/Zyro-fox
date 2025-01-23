@@ -41,7 +41,7 @@ export default function SupportMe() {
         {[
           { href: '#', icon: <FaPaypal />, label: 'PayPal' },
           { href: '#', icon: <FaPatreon />, label: 'Patreon' },
-          { href: '#', icon: <FaYoutube />, label: 'Become a Channel Member' },
+          { href: '#', icon: <FaYoutube />, label: 'Youtube' },
           { href: '#', icon: <FaTwitch />, label: 'Twitch' },
         ].map(({ href, icon, label }, index) => (
           <SmartButton
