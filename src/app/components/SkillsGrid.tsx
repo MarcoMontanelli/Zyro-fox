@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -10,37 +10,44 @@ export default function SkillsGrid() {
   const skills = [
     {
       title: 'Programming',
-      description: 'Proficient in multiple programming languages, developing software and creating efficient algorithms.',
+      description:
+        'Proficient in multiple programming languages, developing software and creating efficient algorithms.',
       image: 'programming.jpg',
     },
     {
       title: '3D Printing',
-      description: 'Expertise in 3D modeling and printing, turning digital designs into tangible prototypes.',
+      description:
+        'Expertise in 3D modeling and printing, turning digital designs into tangible prototypes.',
       image: 'printing.jpg',
     },
     {
       title: 'Photo/Video Editing',
-      description: 'Skilled in editing photos and videos with advanced tools to create stunning visuals.',
+      description:
+        'Skilled in editing photos and videos with advanced tools to create stunning visuals.',
       image: 'editing.jpg',
     },
     {
       title: 'Content Creation',
-      description: 'Crafting engaging content across various platforms to build and inspire audiences.',
+      description:
+        'Crafting engaging content across various platforms to build and inspire audiences.',
       image: 'banger.png',
     },
     {
       title: 'Electronics',
-      description: 'Building and repairing electronic devices, with a strong understanding of circuits and hardware.',
+      description:
+        'Building and repairing electronic devices, with a strong understanding of circuits and hardware.',
       image: 'electronics.jpeg',
     },
     {
       title: 'Sewing',
-      description: 'Designing and creating custom clothing and accessories with precision and creativity.',
+      description:
+        'Designing and creating custom clothing and accessories with precision and creativity.',
       image: 'sewing.jpg',
     },
     {
       title: 'Cars',
-      description: "I'm passionate about automotive mechanics and car customization.",
+      description:
+        "I'm passionate about automotive mechanics and car customization.",
       image: 'car.jpg',
     },
     {
@@ -52,13 +59,25 @@ export default function SkillsGrid() {
 
   const openImage = (image: string) => {
     setSelectedImage(image);
-    document.body.style.overflow = 'hidden'; // Disable scrolling when modal is open
   };
 
   const closeModal = () => {
     setSelectedImage(null);
-    document.body.style.overflow = ''; // Re-enable scrolling
   };
+
+  // Manage body overflow for the modal
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden'; // Disable scrolling when the modal is open
+    } else {
+      document.body.style.overflow = ''; // Re-enable scrolling when the modal is closed
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedImage]);
 
   return (
     <div className="py-16 px-6 lg:px-16 bg-transparent">
