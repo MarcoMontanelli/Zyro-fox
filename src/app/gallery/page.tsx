@@ -42,55 +42,7 @@ export default function Gallery() {
         </motion.div>
       </div>
 
-      {/* Glow Animations in the Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Large Glows */}
-        <motion.div
-          className="absolute w-80 h-80 bg-purple-500 opacity-50 blur-3xl rounded-full -top-10 -left-10"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.4, 0.6, 0.4],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 6,
-            ease: 'easeInOut',
-          }}
-        ></motion.div>
-        <motion.div
-          className="absolute w-80 h-80 bg-blue-500 opacity-50 blur-3xl rounded-full -bottom-20 -right-20"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.4, 0.6, 0.4],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 6,
-            ease: 'easeInOut',
-          }}
-        ></motion.div>
-
-        {/* Small Scattered Glows */}
-        {[...Array(6)].map((_, index) => (
-          <motion.div
-            key={index}
-            className="absolute w-20 h-20 bg-green-500 opacity-40 blur-2xl rounded-full"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: Math.random() * 4 + 3, // Random duration between 3-7 seconds
-              ease: 'easeInOut',
-            }}
-          ></motion.div>
-        ))}
-      </div>
+      
 
       {/* Content Section */}
       <div className="mt-16 w-full z-10">

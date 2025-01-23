@@ -52,33 +52,7 @@ export default function Resources() {
         </li>
       </motion.ul>
 
-      {/* Glow Animation */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-purple-500 opacity-50 blur-3xl rounded-full top-4 left-4"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.4, 0.6, 0.4],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 6,
-            ease: 'easeInOut',
-          }}
-        ></motion.div>
-        <motion.div
-          className="absolute w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-blue-500 opacity-50 blur-3xl rounded-full bottom-4 right-10"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.4, 0.6, 0.4],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 6,
-            ease: 'easeInOut',
-          }}
-        ></motion.div>
-      </div>
+      
     </div>
   );
 }
