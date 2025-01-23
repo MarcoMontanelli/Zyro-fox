@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { FaDragon, FaExpand, FaWolfPackBattalion } from 'react-icons/fa'; // Icon for the fullscreen button
@@ -8,6 +8,11 @@ import { FaImage } from 'react-icons/fa'; // Icon for the section title
 
 export default function ImagesSection() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [isBrowser, setIsBrowser] = useState(false);
+
+    useEffect(() => {
+        setIsBrowser(true);
+    }, []);
 
     const images = [
         {
@@ -26,12 +31,16 @@ export default function ImagesSection() {
 
     const openImage = (image: string) => {
         setSelectedImage(image);
-        document.body.style.overflow = 'hidden'; // Disable background scrolling
+        if (typeof document !== 'undefined') {
+            document.body.style.overflow = 'hidden'; // Disable background scrolling
+        }
     };
 
     const closeModal = () => {
         setSelectedImage(null);
-        document.body.style.overflow = ''; // Re-enable background scrolling
+        if (typeof document !== 'undefined') {
+            document.body.style.overflow = ''; // Re-enable background scrolling
+        }
     };
 
     return (
@@ -206,36 +215,37 @@ export default function ImagesSection() {
             </div>
 
             {/* Fullscreen Modal */}
-            {createPortal(
-                <AnimatePresence>
-                    {selectedImage && (
-                        <motion.div
-                            className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={closeModal}
-                        >
-                            <motion.img
-                                src={selectedImage}
-                                alt="Fullscreen"
-                                className="w-auto max-w-[90%] max-h-[90%] rounded-lg shadow-lg"
-                                initial={{ scale: 0.8, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                exit={{ scale: 0.8, opacity: 0 }}
-                                transition={{ duration: 0.5 }}
-                            />
-                            <motion.button
+            {isBrowser &&
+                createPortal(
+                    <AnimatePresence>
+                        {selectedImage && (
+                            <motion.div
+                                className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
                                 onClick={closeModal}
-                                className="absolute top-4 right-4 text-white text-2xl bg-gray-700 bg-opacity-50 rounded-full p-2 hover:bg-opacity-80 transition"
                             >
-                                ✕
-                            </motion.button>
-                        </motion.div>
-                    )}
-                </AnimatePresence>,
-                document.body
-            )}
+                                <motion.img
+                                    src={selectedImage}
+                                    alt="Fullscreen"
+                                    className="w-auto max-w-[90%] max-h-[90%] rounded-lg shadow-lg"
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    exit={{ scale: 0.8, opacity: 0 }}
+                                    transition={{ duration: 0.5 }}
+                                />
+                                <motion.button
+                                    onClick={closeModal}
+                                    className="absolute top-4 right-4 text-white text-2xl bg-gray-700 bg-opacity-50 rounded-full p-2 hover:bg-opacity-80 transition"
+                                >
+                                    ✕
+                                </motion.button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>,
+                    document.body
+                )}
         </div>
     );
 }

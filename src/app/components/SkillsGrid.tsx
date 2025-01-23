@@ -6,6 +6,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function SkillsGrid() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isBrowser, setIsBrowser] = useState(false);
+
+  useEffect(() => {
+    setIsBrowser(true);
+  }, []);
 
   const skills = [
     {
@@ -67,17 +72,19 @@ export default function SkillsGrid() {
 
   // Manage body overflow for the modal
   useEffect(() => {
-    if (selectedImage) {
-      document.body.style.overflow = 'hidden'; // Disable scrolling when the modal is open
-    } else {
-      document.body.style.overflow = ''; // Re-enable scrolling when the modal is closed
-    }
+    if (isBrowser) {
+      if (selectedImage) {
+        document.body.style.overflow = 'hidden'; // Disable scrolling when the modal is open
+      } else {
+        document.body.style.overflow = ''; // Re-enable scrolling when the modal is closed
+      }
 
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [selectedImage]);
+      // Cleanup on unmount
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+  }, [selectedImage, isBrowser]);
 
   return (
     <div className="py-16 px-6 lg:px-16 bg-transparent">
@@ -130,39 +137,40 @@ export default function SkillsGrid() {
       </div>
 
       {/* Fullscreen Modal */}
-      {createPortal(
-        <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
+      {isBrowser &&
+        createPortal(
+          <AnimatePresence>
+            {selectedImage && (
               <motion.div
-                className="relative w-auto max-w-7xl max-h-screen"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.5 }}
+                className="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
               >
-                <img
-                  src={selectedImage}
-                  alt="Fullscreen"
-                  className="w-full h-auto rounded-lg shadow-lg"
-                />
-                <motion.button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 text-white text-2xl bg-gray-700 bg-opacity-50 rounded-full p-2 hover:bg-opacity-80 transition"
+                <motion.div
+                  className="relative w-auto max-w-7xl max-h-screen"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ duration: 0.5 }}
                 >
-                  ✕
-                </motion.button>
+                  <img
+                    src={selectedImage}
+                    alt="Fullscreen"
+                    className="w-full h-auto rounded-lg shadow-lg"
+                  />
+                  <motion.button
+                    onClick={closeModal}
+                    className="absolute top-4 right-4 text-white text-2xl bg-gray-700 bg-opacity-50 rounded-full p-2 hover:bg-opacity-80 transition"
+                  >
+                    ✕
+                  </motion.button>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>,
-        document.body // Render the modal at the root level
-      )}
+            )}
+          </AnimatePresence>,
+          document.body // Render the modal at the root level
+        )}
     </div>
   );
 }
