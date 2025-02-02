@@ -108,10 +108,16 @@ const galleryData: MediaData[] = [
 
 export default function MediaGallery() {
   const [selectedMedia, setSelectedMedia] = useState<MediaData | null>(null);
+  const [isBrowser, setIsBrowser] = useState(false);
+
+  // Set a flag to detect client environment
+  useEffect(() => {
+    setIsBrowser(true);
+  }, []);
 
   // Lock page scroll when modal is open
   useEffect(() => {
-    if (selectedMedia) {
+    if (selectedMedia && isBrowser) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -120,10 +126,10 @@ export default function MediaGallery() {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [selectedMedia]);
+  }, [selectedMedia, isBrowser]);
 
   return (
-    <div className="py-12 relative z-10">
+    <div className="py-12">
       {/* Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 w-full px-4 sm:px-6 lg:px-8 mx-auto">
         {galleryData.map((item, index) => (
@@ -172,45 +178,46 @@ export default function MediaGallery() {
       </div>
 
       {/* Fullscreen Modal */}
-      {createPortal(
-        <AnimatePresence>
-          {selectedMedia && (
-            <motion.div
-              className="fixed inset-0 z-[1000] bg-black bg-opacity-80 flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedMedia(null)} // Close modal on click outside
-            >
-              {selectedMedia.type === 'image' ? (
-                <motion.img
-                  src={selectedMedia.mediaUrl}
-                  alt={selectedMedia.title}
-                  className="w-auto max-w-[90%] max-h-[90%] rounded-lg shadow-lg"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  onClick={(e) => e.stopPropagation()} // Prevent modal close on image click
-                />
-              ) : (
-                <motion.video
-                  src={selectedMedia.mediaUrl}
-                  className="w-auto max-w-[90%] max-h-[90%] rounded-lg shadow-lg"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.8, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  controls
-                  autoPlay
-                  onClick={(e) => e.stopPropagation()} // Prevent modal close on video click
-                />
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>,
-        document.body
-      )}
+      {isBrowser &&
+        createPortal(
+          <AnimatePresence>
+            {selectedMedia && (
+              <motion.div
+                className="fixed inset-0 z-[1000] bg-black bg-opacity-80 flex items-center justify-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedMedia(null)}
+              >
+                {selectedMedia.type === 'image' ? (
+                  <motion.img
+                    src={selectedMedia.mediaUrl}
+                    alt={selectedMedia.title}
+                    className="w-auto max-w-[90%] max-h-[90%] rounded-lg shadow-lg"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                ) : (
+                  <motion.video
+                    src={selectedMedia.mediaUrl}
+                    className="w-auto max-w-[90%] max-h-[90%] rounded-lg shadow-lg"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    controls
+                    autoPlay
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
     </div>
   );
 }
