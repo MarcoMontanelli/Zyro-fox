@@ -16,7 +16,7 @@ export default function AboutMe() {
         {/* Circular Image */}
         <div className="w-full h-full aspect-square rounded-full relative">
           <img
-            src="/drake.png" // Replace with your image path
+            src="/drake.svg" // Replace with your image path
             alt="About Me"
             className="w-full h-full object-cover rounded-full transform transition-transform duration-500 group-hover:scale-105"
           />

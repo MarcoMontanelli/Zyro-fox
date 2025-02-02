@@ -18,7 +18,7 @@ export default function ImagesSection() {
         {
             title: 'Zyro the fox',
             description: 'Personality: Zyro is a vibrant and witty soul who loves exploring new places and meeting people from all walks of life. His cheerful demeanor and quick thinking make him the go-to friend in tricky situations. He has a passion for technology and spends his evenings tinkering with gadgets or gaming online with friends. Zyro is fiercely loyal and always looks for the silver lining, even in the toughest times. Interests: Urban exploring, video games, coding, and baking sweet treats (though he’s still learning to keep them edible). Fun Fact: Zyro has a small, glowing pendant he wears everywhere, a keepsake from his late grandmother that inspires him to follow his dreams.',
-            image: 'drake.png',
+            image: 'drake.svg',
             caption: 'Zyro',
         },
        

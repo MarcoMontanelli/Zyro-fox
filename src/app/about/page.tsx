@@ -46,7 +46,7 @@ export default function About() {
         {/* Image Wrapper */}
         <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-xl">
           <img
-            src="drake.png" // Replace with your profile image path
+            src="drake.svg" // Replace with your profile image path
             alt="Profile"
             className="w-full h-full object-cover rounded-full"
           />

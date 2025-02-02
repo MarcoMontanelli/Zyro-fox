@@ -34,7 +34,7 @@ export default function Footer() {
             className="h-24 w-24 rounded-full flex items-center justify-center overflow-hidden shadow-lg shadow-white/20"
           >
             <img
-              src="drake.png" // Replace with your actual logo image path
+              src="drake.svg" // Replace with your actual logo image path
               alt="Logo"
               className="h-full w-full object-cover rounded-full"
             />

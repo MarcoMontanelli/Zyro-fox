@@ -49,7 +49,7 @@ export default function Navbar() {
               </h1>
               <div className="h-8 w-8 rounded-full">
                 <img
-                  src="drake.png" // Replace with the actual image path
+                  src="drake.svg" // Replace with the actual image path
                   alt="Logo"
                   className="h-full w-full object-cover rounded-full"
                 />
