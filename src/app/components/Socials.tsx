@@ -40,7 +40,7 @@ export default function MySocials() {
         {/* Button Template */}
         {[
           { href: 'https://www.youtube.com/@madonnaaramiaca1410', icon: FaYoutube, label: 'YouTube', color: 'backdrop-blur-sm bg-transparent' },
-          { href: 'https://www.instagram.com/dragonsemporiumig/', icon: FaInstagram, label: 'Instagram', color: 'backdrop-blur-sm bg-transparent' },
+          { href: 'https://www.instagram.com/zyro_fox24/', icon: FaInstagram, label: 'Instagram', color: 'backdrop-blur-sm bg-transparent' },
           { href: '#', icon: FaTwitter, label: 'X', color: 'backdrop-blur-sm bg-transparent' },
           { href: 'https://www.tiktok.com/@smont2rimonta', icon: FaTiktok, label: 'TikTok', color: 'backdrop-blur-sm bg-transparent' },
           { href: 'https://discord.gg/kV4TEmqHUg', icon: FaDiscord, label: 'Discord', color: 'backdrop-blur-sm bg-transparent' },

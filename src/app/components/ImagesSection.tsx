@@ -21,12 +21,7 @@ export default function ImagesSection() {
             image: 'drake.png',
             caption: 'Zyro',
         },
-        {
-            title: 'Kael the dragon',
-            description: 'Personality: Kael is a calm and introspective figure, exuding quiet confidence. Despite his intimidating appearance, he is kind-hearted and always willing to help those in need. Kael has a deep love for ancient history and spends much of his time researching old tomes and exploring forgotten ruins. He enjoys solitude but treasures deep, meaningful conversations with close friends. Interests: Ancient mythology, painting landscapes, collecting rare artifacts, and stargazing.Fun Fact: Kael has a hidden talent for music—he plays a handmade flute he crafted from obsidian shards, creating hauntingly beautiful melodies.',
-            image: 'kowalski.png',
-            caption: 'Kael',
-        },
+       
     ];
 
     const openImage = (image: string) => {

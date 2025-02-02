@@ -13,7 +13,7 @@ export default function Contact() {
   });
   const [showToast, setShowToast] = useState(false);
 
-  const emailAddress = 'dragonsemporium2023@gmail.com'; // Replace with your email address
+  const emailAddress = 'claudiopaws73@gmail.com'; // Replace with your email address
 
   const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -45,7 +45,7 @@ export default function Contact() {
 
   const socials = [
     { platform: 'Tiktok', icon: FaTiktok, link: 'https://www.tiktok.com/@smont2rimonta' },
-    { platform: 'Instagram', icon: FaInstagram, link: 'https://www.instagram.com/dragonsemporiumig/' },
+    { platform: 'Instagram', icon: FaInstagram, link: 'https://www.instagram.com/zyro_fox24/' },
     { platform: 'Twitter', icon: FaTwitter, link: '#' },
     { platform: 'YouTube', icon: FaYoutube, link: 'https://www.youtube.com/@madonnaaramiaca1410' },
   ];

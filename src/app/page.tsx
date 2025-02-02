@@ -12,10 +12,10 @@ export default function HomePage() {
     <>
       <AboutMe />
       <MySocials />
-      <AnimatedStats />
+      {/*<AnimatedStats />*/}
       <PhoneSection videoId="tVZ2N2vEj9E"/>
       <ResponsiveGrid/>
-      <SupportMe />
+      {/*<SupportMe />*/}
       
     </>
   );

@@ -84,7 +84,7 @@ export default function Footer() {
           <div className="flex flex-wrap justify-center space-x-4 sm:space-x-6">
             {[
               { icon: FaTiktok, link: "https://www.tiktok.com/@smont2rimonta" },
-              { icon: FaInstagram, link: "https://www.instagram.com/dragonsemporiumig/" },
+              { icon: FaInstagram, link: "https://www.instagram.com/zyro_fox24/" },
               { icon: FaTwitter, link: "https://twitter.com" },
               { icon: FaYoutube, link: "https://www.youtube.com/@madonnaaramiaca1410" },
               { icon: FaDiscord, link: "https://discord.gg/kV4TEmqHUg" },
