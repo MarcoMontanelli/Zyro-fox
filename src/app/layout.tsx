@@ -1,5 +1,5 @@
 'use client';
-
+import { Analytics } from "@vercel/analytics/react"
 import './globals.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -114,7 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body key={pathname} className="relative min-h-screen text-white overflow-x-hidden">
         {/* Fixed Background */}
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-black via-space-dark to-void-purple" />
-
+        <Analytics  mode="production"/>
         {/* Particle Background */}
         <Particles
           id="tsparticles"
